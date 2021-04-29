@@ -26,7 +26,7 @@
 |------------------|----------------|-------------------|
 | name             | string         | null: false       |
 | description      | text           | null: false       |
-| category_id      | integer        |                   |
+| category_id      | integer        | null: false       |
 | status_id        | integer        | null: false       |
 | delivery_cost_id | integer        | null: false       |
 | delivery_area_id | integer        | null: false       |
@@ -57,14 +57,15 @@
 
 ## shippings table
 
-| Column        | Type       | Options           |
-|---------------|------------|-------------------|
-| post_number   | string     | null: false       |
-| prefecture_id | integer    | null: false       |
-| city          | string     | null: false       |
-| address       | integer    | null: false       |
-| building      | string     |                   |
-| phone_number  | string     | null: false       |
+| Column           | Type       | Options           |
+|------------------|------------|-------------------|
+| post_number      | string     | null: false       |
+| delivery_area_id | integer    | null: false       |
+| city             | string     | null: false       |
+| address          | string     | null: false       |
+| building         | string     |                   |
+| phone_number     | string     | null: false       |
+| purchaser        | references | foreign_key: true |
 
 ### Association
 
