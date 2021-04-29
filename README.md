@@ -2,12 +2,12 @@
 
 ## users table
 
-| Column             | Type                | Options                 |
-|--------------------|---------------------|-------------------------|
-| nick_name          | string              | null: false             |
-| email              | string              | null: false             |
-| password           | string              | null: false             |
-| first_name         | string              | null: false             |
+| Column             | Type                | Options                   |
+|--------------------|---------------------|---------------------------|
+| nick_name          | string              | null: false               |
+| email              | string              | null: false, unique: true |
+| encrypted_password | string              | null: false               |
+| first_name         | string              | null: false               |
 | last_name          | string              | null: false             |
 | first_name_kana    | string              | null: false             |
 | last_name_kana     | string              | null: false             |
@@ -22,24 +22,23 @@
 
 ## items table
 
-| Column        | Type           | Options           |
-|---------------|----------------|-------------------|
-| image         | Active Storage | null: false       |
-| name          | string         | null: false       |
-| description   | text           | null: false       |
-| category      | string         |                   |
-| status        | string         | null: false       |
-| delivery_cost | string         | null: false       |
-| delivery_area | string         | null: false       |
-| delivery_days | datetime       | null: false       |
-| price         | integer        | null: false       |
-| user          | references     | foreign_key: true |
+| Column           | Type           | Options           |
+|------------------|----------------|-------------------|
+| name             | string         | null: false       |
+| description      | text           | null: false       |
+| category_id      | integer        |                   |
+| status_id        | integer        | null: false       |
+| delivery_cost_id | integer        | null: false       |
+| delivery_area_id | integer        | null: false       |
+| delivery_days_id | integer        | null: false       |
+| price            | integer        | null: false       |
+| user             | references     | foreign_key: true |
 
 
 ### Association
 
-- belongs_to :users
-- has_one :purchasers
+- belongs_to :user
+- has_one :purchaser
 
 
 ## purchasers table
@@ -51,22 +50,22 @@
 
 ### Association
 
-- belongs_to :users
-- belongs_to :items
-- has_one :shippings
+- belongs_to :user
+- belongs_to :item
+- has_one :shipping
 
 
 ## shippings table
 
-| Column       | Type       | Options           |
-|--------------|------------|-------------------|
-| post_number  | integer    | null: false       |
-| prefecture   | string     | null: false       |
-| city         | string     | null: false       |
-| address      | integer    | null: false       |
-| building     | string     | null: false       |
-| phone_number | string     | null: false       |
+| Column        | Type       | Options           |
+|---------------|------------|-------------------|
+| post_number   | string     | null: false       |
+| prefecture_id | integer    | null: false       |
+| city          | string     | null: false       |
+| address       | integer    | null: false       |
+| building      | string     |                   |
+| phone_number  | string     | null: false       |
 
 ### Association
 
-- belongs_to :purchasers
+- belongs_to :purchaser
