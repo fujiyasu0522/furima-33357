@@ -7,6 +7,7 @@ class User < ApplicationRecord
   VALID_NAME_REGEX = /\A[ぁ-んァ-ン一-龥々]+\z/
   VALID_NAME_KANA_REGEX = /\A[ァ-ヶー－]+\z/
   VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i
+  # 事後学習のために下記は残す
   # /\A(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[\d])\w{6,}\z/
   # /[a-z\d]{6,}/i
   # # /^(?=.*?[a-zA-Z])(?=.*?\d)[a-zA-Z\d]{6,}$/
