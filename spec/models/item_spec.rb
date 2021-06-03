@@ -66,14 +66,24 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Price is not a number")
       end
       it '価格が300円未満だと登録できないこと' do
-        @item.price = "299"
+        @item.price = 299
         @item.valid?
         expect(@item.errors.full_messages).to include("Price must be greater than or equal to 300")
       end
       it '価格が10,000,000円以上だと登録できないこと' do
-        @item.price = "111000000"
+        @item.price = 111000000
         @item.valid?
         expect(@item.errors.full_messages).to include("Price must be less than or equal to 9999999")
+      end
+      it '価格は半角英数混合では出品できない' do
+        @item.price = "123abc"
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price is not a number")
+      end
+      it '価格は英語のみでは出品できない' do
+        @item.price = "not"
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price is not a number")
       end
     end
   end
