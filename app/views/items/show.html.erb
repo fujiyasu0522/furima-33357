@@ -4,7 +4,7 @@
 <div class="item-show">
   <div class="item-box">
     <h2 class="name">
-      <%= "商品名" %>
+      <%= item.item_name %>
     </h2>
     <div class="item-img-content">
       <%= image_tag "item-sample.png" ,class:"item-box-img" %>
@@ -19,7 +19,7 @@
         ¥ 999,999,999
       </span>
       <span class="item-postage">
-        <%= "配送料負担" %>
+        <%= item.delivery_cost_id %>
       </span>
     </div>
 
@@ -43,7 +43,7 @@
       <tbody>
         <tr>
           <th class="detail-item">出品者</th>
-          <td class="detail-value"><%= "出品者名" %></td>
+          <td class="detail-value"><%= @user.name %></td>
         </tr>
         <tr>
           <th class="detail-item">カテゴリー</th>
