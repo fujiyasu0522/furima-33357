@@ -126,7 +126,7 @@
     <%= link_to '新規投稿商品', "#", class: "subtitle" %>
     <ul class='item-lists'>
 
-    <% if @items != nil %>
+    <% if @items.present? %>
       <% @items.each do |item| %>
         <%= link_to item_path(item.id) do %>
         <div class='item-img-content'>
@@ -170,9 +170,9 @@
         </div>
         <% end %>
       </li>
+    <% end %>
     </ul>
   </div>
-  <% end %>
   <%# /商品一覧 %>
 </div>
 <%= link_to new_item_path, class: 'purchase-btn' do %>
