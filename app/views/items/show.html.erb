@@ -22,7 +22,7 @@
         <%= @item.delivery_cost.name %>
       </span>
     </div>
-
+<%# gitにコミットするための加筆 %>
     <% if user_signed_in? %>
       <% if current_user.id == @item.user_id %>
         <%= link_to "商品の編集", "#", method: :get, class: "item-red-btn" %>
