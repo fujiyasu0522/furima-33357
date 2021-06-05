@@ -9,7 +9,8 @@ class Item < ApplicationRecord
   belongs_to :delivery_area
   belongs_to :delivery_cost
   belongs_to :delivery_days
-
+  belongs_to :status
+  
   with_options presence: true do
     validates :image
     validates :item_name
