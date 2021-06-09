@@ -1,25 +1,16 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_item, only: [:index, :create]
-  before_action :sold_out_item, only: [:index]
+  before_action :sold_out_item, only: [:index, :create]
+  before_action :go_to_order, only: [:index, :create]
 
   def index
-    if current_user.id == @item.user_id
-      redirect_to root_path
-    else
-      @order_form = OrderForm.new
-    end
   end
 
   def create
     @order_form = OrderForm.new(order_params)
     if @order_form.valid?
-      Payjp.api_key = "sk_test_dedca0a8be8dd120cb297e8e"
-      Payjp::Charge.create(
-        amount: @item.price,
-        card: order_params[:token],
-        currency: "jpy"
-      )
+      pay_item
       @order_form.save
       return redirect_to root_path
     else
@@ -41,5 +32,22 @@ class OrdersController < ApplicationController
     if @item.order.present?
       redirect_to root_path 
     end
+  end
+
+  def go_to_order
+    if current_user.id == @item.user_id
+      redirect_to root_path
+    else
+      @order_form = OrderForm.new
+    end
+  end
+
+  def pay_item
+      Payjp.api_key = ENV["PAYJP_SECRET_KEY"] 
+      Payjp::Charge.create(
+        amount: @item.price,
+        card: order_params[:token],
+        currency: "jpy"
+      )
   end
 end
