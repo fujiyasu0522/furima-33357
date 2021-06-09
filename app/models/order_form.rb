@@ -3,6 +3,7 @@ class OrderForm < ApplicationRecord
   attr_accessor :token, :postal_code, :delivery_area_id, :city_name, :block_name, :building, :phone_number, :item_id, :user_id
 
   with_options presence: true do
+    validates :token
     validates :city_name
     validates :block_name
     validates :postal_code,      format: { with: /\A\d{3}[-]\d{4}\z/ }
