@@ -8,10 +8,10 @@
 | email              | string              | null: false, unique: true |
 | encrypted_password | string              | null: false               |
 | first_name         | string              | null: false               |
-| last_name          | string              | null: false             |
-| first_name_kana    | string              | null: false             |
-| last_name_kana     | string              | null: false             |
-| birthday           | date                | null: false             |
+| last_name          | string              | null: false               |
+| first_name_kana    | string              | null: false               |
+| last_name_kana     | string              | null: false               |
+| birthday           | date                | null: false               |
 
 
 ### Association
@@ -38,10 +38,10 @@
 ### Association
 
 - belongs_to :user
-- has_one :purchaser
+- has_one :order
 
 
-## purchasers table
+## order table
 
 | Column      | Type       | Options           |
 |-------------|------------|-------------------|
@@ -52,21 +52,20 @@
 
 - belongs_to :user
 - belongs_to :item
-- has_one :shipping
+- has_one :order
 
-
-## shippings table
+## address table
 
 | Column           | Type       | Options           |
 |------------------|------------|-------------------|
-| post_number      | string     | null: false       |
+| postal_code      | string     | null: false       |
 | delivery_area_id | integer    | null: false       |
-| city             | string     | null: false       |
-| address          | string     | null: false       |
+| city_name        | string     | null: false       |
+| block_name       | string     | null: false       |
 | building         | string     |                   |
 | phone_number     | string     | null: false       |
-| purchaser        | references | foreign_key: true |
+| order            | references | foreign_key: true |
 
 ### Association
 
-- belongs_to :purchaser
+- belongs_to :order
