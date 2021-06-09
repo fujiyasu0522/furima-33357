@@ -24,6 +24,9 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    if @item.order.present?
+      redirect_to root_path
+    end
     # 事後学習のため残す
     # if user_signed_in?
     #   if current_user.id != @item.user_id
