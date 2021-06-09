@@ -2,7 +2,10 @@ require 'rails_helper'
 
 RSpec.describe OrderForm, type: :model do
   before do
-    @order_form = FactoryBot.build(:order_form)
+    item = FactoryBot.create(:item)
+    user = FactoryBot.create(:user)
+    @order_form = FactoryBot.build(:order_form, item_id: item.id, user_id: user.id)
+    sleep(1)
   end
 
     describe '購入情報の保存' do
@@ -14,6 +17,11 @@ RSpec.describe OrderForm, type: :model do
 
         it '建物名が抜けていても登録できる' do
           @order_form.building = ""
+          expect(@order_form).to be_valid
+        end
+
+        it '電話番号が10桁でも登録できる' do
+          @order_form.phone_number = "1234567890"
           expect(@order_form).to be_valid
         end
       end
